@@ -37,7 +37,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="employee : ${listEmployees}">
-					<td th:text="${employee.firstName}"></td>
+					<td><a th:href="@{/getOne/{id}/(id=${employee.id})}" th:text="${employee.firstName}"></a></td>
 					<td th:text="${employee.lastName}"></td>
 					<td th:text="${employee.email}"></td>
 					<td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>

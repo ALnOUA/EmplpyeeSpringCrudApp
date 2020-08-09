@@ -1,33 +1,34 @@
-package net.javaguides.springboot.controller;
+package com.ua.controller;
 
 import java.util.List;
 
+import com.ua.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
-import net.javaguides.springboot.model.Employee;
-import net.javaguides.springboot.service.EmployeeService;
+import com.ua.service.EmployeeService;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/")
 public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
 	
 	// display list of employees
-	@GetMapping("/")
+	@GetMapping("")
 	public String viewHomePage(Model model) {
 		return findPaginated(1, "firstName", "asc", model);		
 	}
-	
-	@GetMapping("/showNewEmployeeForm")
+	// display form for creating new employee
+	@GetMapping("showNewEmployeeForm")
 	public String showNewEmployeeForm(Model model) {
 		// create model attribute to bind form data
 		Employee employee = new Employee();
@@ -35,14 +36,18 @@ public class EmployeeController {
 		return "new_employee";
 	}
 	
-	@PostMapping("/saveEmployee")
-	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+	@PostMapping("saveEmployee")
+	public String saveEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result) {
+		//checking for errors
+		if(result.hasErrors()){
+			return "new_employee";
+		}
 		// save employee to database
 		employeeService.saveEmployee(employee);
 		return "redirect:/";
 	}
 	
-	@GetMapping("/showFormForUpdate/{id}")
+	@GetMapping("showFormForUpdate/{id}")
 	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
 		
 		// get employee from the service
@@ -53,7 +58,7 @@ public class EmployeeController {
 		return "update_employee";
 	}
 	
-	@GetMapping("/deleteEmployee/{id}")
+	@GetMapping("deleteEmployee/{id}")
 	public String deleteEmployee(@PathVariable (value = "id") long id) {
 		
 		// call delete employee method 
@@ -62,7 +67,7 @@ public class EmployeeController {
 	}
 	
 	
-	@GetMapping("/page/{pageNo}")
+	@GetMapping("page/{pageNo}")
 	public String findPaginated(@PathVariable (value = "pageNo") int pageNo, 
 			@RequestParam("sortField") String sortField,
 			@RequestParam("sortDir") String sortDir,
@@ -83,4 +88,13 @@ public class EmployeeController {
 		model.addAttribute("listEmployees", listEmployees);
 		return "index";
 	}
+	@GetMapping("getOne/{id}")
+	@ResponseBody
+	public ModelAndView getOne(@PathVariable("id") Long id, ModelAndView model){
+		Employee employee = employeeService.getEmployeeById(id);
+		model.addObject("employee", employee);
+		model.setViewName("employee_details");
+		return model;
+	}
+
 }

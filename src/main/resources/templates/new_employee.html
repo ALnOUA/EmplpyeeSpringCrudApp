@@ -16,15 +16,78 @@
 
 		<form action="#" th:action="@{/saveEmployee}" th:object="${employee}"
 			method="POST">
-			<input type="text" th:field="*{firstName}"
+			<p> First name:
+				<input type="text" th:field="*{firstName}"
 				placeholder="Employee First Name" class="form-control mb-4 col-4">
-				
+			<span
+					th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+					class="text-danger">
+			</span>
+			</p>
+
+			<p>Last name:
 				<input type="text" th:field="*{lastName}"
 				placeholder="Employee Last Name" class="form-control mb-4 col-4">
-				
+				<span
+						th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+						class="text-danger">
+			</span>
+			</p>
+
+			<p>Email:
 				<input type="text" th:field="*{email}"
-				placeholder="Employee Email" class="form-control mb-4 col-4">
-				
+					   placeholder="Employee Email" class="form-control mb-4 col-4">
+				<span
+						th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+						class="text-danger">
+			</span>
+			</p>
+
+			<p>Login:
+				<input type="text" th:field="*{login}"
+					   placeholder="Employee login" class="form-control mb-4 col-4">
+				<span
+						th:if="${#fields.hasErrors('login')}" th:errors="*{login}"
+						class="text-danger">
+			</span>
+			</p>
+
+			<p>Password:
+				<input type="text" th:field="*{password}"
+					   placeholder="Employee password" class="form-control mb-4 col-4">
+				<span
+						th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+						class="text-danger">
+			</span>
+			</p>
+
+			<p>Address:
+				<input type="text" th:field="*{address}"
+					   placeholder="Employee address" class="form-control mb-4 col-4">
+				<span
+						th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+						class="text-danger">
+			</span>
+			</p>
+
+			<p>Birthday:
+				<input type="date" th:field="*{birthday}"
+					   placeholder="Employee birthday" class="form-control mb-4 col-4">
+				<span
+						th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"
+						class="text-danger">
+			</span>
+			</p>
+
+			<p>About:
+				<input type="text" th:field="*{about}"
+					   placeholder="About employee" class="form-control mb-4 col-4">
+				<span
+						th:if="${#fields.hasErrors('about')}" th:errors="*{about}"
+						class="text-danger">
+			</span>
+			</p>
+
 				<button type="submit" class="btn btn-info col-2"> Save Employee</button>
 		</form>
 		

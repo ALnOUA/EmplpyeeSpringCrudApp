@@ -6,17 +6,20 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.7.RELEASE</version>
+
+
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>net.javaguides</groupId>
-	<artifactId>springboot-thymeleaf-crud-web-app</artifactId>
+	<groupId>com.ua</groupId>
+	<artifactId>employee-management-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot-thymeleaf-crud-web-app</name>
-	<description>Demo project for Spring Boot and thymeleaf</description>
+	<name>employee-management-spring-hibernate-postgresql-thymleaf-crud</name>
+	<description>Demo project for Konsol Studio</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+
 
 	<dependencies>
 		<dependency>
@@ -54,6 +57,34 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.12</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>exec-maven-plugin</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -61,6 +92,22 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>com.ua.SpringbootThymeleafCrudWebAppApplication</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

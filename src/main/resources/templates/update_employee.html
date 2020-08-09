@@ -18,18 +18,27 @@
 			
 			<!-- Add hidden form field to handle update -->
 			<input type="hidden" th:field="*{id}" />
-			
-			<input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
+
+			<input type="text" placeholder="First name" th:field="*{firstName}" class="form-control mb-4 col-4">
 				
-				<input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
+			<input type="text" placeholder="Last name" th:field="*{lastName}" class="form-control mb-4 col-4">
 				
-				<input type="text" th:field="*{email}" class="form-control mb-4 col-4">
+			<input type="text" placeholder="Email" th:field="*{email}" class="form-control mb-4 col-4">
+
+			<input type="text" placeholder="Login" th:field="*{login}" class="form-control mb-4 col-4">
+
+			<input type="text" placeholder="Password" th:field="*{password}" class="form-control mb-4 col-4">
+
+			<input type="text" placeholder="Address" th:field="*{address}" class="form-control mb-4 col-4">
+
+			<input type="date" placeholder="Birthday" th:field="*{birthday}" class="form-control mb-4 col-4">
+
+			<input type="text" placeholder="About" th:field="*{about}" class="form-control mb-4 col-4">
+
 				
 				<button type="submit" class="btn btn-info col-2"> Update Employee</button>
 		</form>
-		
 		<hr>
-		
 		<a th:href = "@{/}"> Back to Employee List</a>
 	</div>
 </body>
